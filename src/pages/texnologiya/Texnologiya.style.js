@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const HeaderContner = styled.header`
-    max-width: 1280px;
-    margin: 0px;
     width: 78%;
     padding: 20px;
     background-color: rgba(124, 109, 117, 0.16);
@@ -11,6 +9,8 @@ export const HeaderContner = styled.header`
     height: 90%;
     top: 10%;
     border-radius: 20px;
+    max-width: 1280px;
+    margin: 0;
 `
 export const HeaderAction = styled.nav`
     display: flex;

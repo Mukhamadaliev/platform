@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+
 export const SidebarContainer = styled.div`
   position: fixed;
   top: 0;
-  left: ${({ isOpen, isMobile }) => 
+  left: ${({ isOpen, isMobile }) =>
     isMobile ? (isOpen ? '0' : '-100%') : '0'};
   width: ${({ isOpen }) => isOpen ? '280px' : '80px'};
   height: 100vh;
@@ -75,6 +76,33 @@ export const ToggleButton = styled.button`
   }
 `;
 
+export const CollapseButton = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #5b6dff;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #5b6dff;
+    color: white;
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
+
 export const Logo = styled.h2`
   width: ${({ isOpen }) => isOpen ? '120px' : '40px'};
   height: ${({ isOpen }) => isOpen ? '120px' : '40px'};
@@ -138,7 +166,6 @@ export const MenuLink = styled(Link)`
       left: 0;
       top: 0;
       height: 100%;
-      width: 4px;
       background: #fff;
       border-radius: 0 2px 2px 0;
     }
@@ -171,7 +198,7 @@ export const LogoutButton = styled.button`
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-top: auto;
+  margin-top: 20px;
   padding: 12px 15px;
   background: transparent;
   border: 2px solid #ff6b6b;
@@ -181,10 +208,14 @@ export const LogoutButton = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
+  width: 100%;
 
   ${({ isOpen }) => !isOpen && `
     justify-content: center;
     padding: 12px;
+    width: 48px;
+    margin-left: auto;
+    margin-right: auto;
   `}
 
   &:hover {
@@ -207,5 +238,38 @@ export const LogoutIcon = styled.span`
 
   ${LogoutButton}:hover & {
     transform: scale(1.1);
+  }
+`;
+
+
+export const SocialIconsContainer = styled.div`
+  display: flex;
+  justify-content: ${({ isOpen }) => isOpen ? 'space-between' : 'center'}; 
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
+  width: 100%;
+
+  ${({ isOpen }) => !isOpen && `
+    flex-direction: column;
+    gap: 15px;
+    border-top: none;
+    padding-top: 0;
+  `}
+`;
+
+export const SocialIconLink = styled.a`
+    font-size: 1.4rem;
+    color: #555;
+    transition: all 0.3s ease;
+    padding: 5px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  &:hover {
+    color: #5b6dff;
+    transform: scale(1.2);
   }
 `;

@@ -13,9 +13,17 @@ import {
   FaLaptopCode,
   FaBullhorn,
   FaUserTie,
+  FaTelegramPlane,
+  FaInstagram,
+  FaYoutube,
+  FaLinkedinIn,
+  FaGithub,
 } from "react-icons/fa";
 import { MdContactMail, MdWork } from "react-icons/md";
 import { HiUserGroup } from "react-icons/hi";
+import { CgMenuRight } from "react-icons/cg";
+import { HiMenuAlt1 } from "react-icons/hi";
+
 
 import {
   SidebarContainer,
@@ -27,6 +35,9 @@ import {
   Icon,
   Text,
   ToggleButton,
+  CollapseButton,
+  SocialIconsContainer,
+  SocialIconLink,
 } from "./Sidebar.styles";
 
 const SideBar = () => {
@@ -60,6 +71,14 @@ const SideBar = () => {
     { icon: <MdWork />, label: "Frilace", path: "/frilace" },
   ];
 
+  const socialLinks = [
+    { icon: <FaTelegramPlane />, url: "https://web.telegram.org/k/" },
+    { icon: <FaInstagram />, url: "https://instagram.com/" },
+    { icon: <FaYoutube />, url: "https://youtube.com/" },
+    { icon: <FaLinkedinIn />, url: "https://linkedin.com/in/" },
+    { icon: <FaGithub />, url: "https://github.com/" },
+  ];
+
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -71,9 +90,17 @@ const SideBar = () => {
       )}
 
       <SidebarContainer isOpen={isOpen} isMobile={isMobile}>
-        <ToggleButton onClick={toggleSidebar}>
-          {isOpen ? <IoClose /> : <IoMenu />}
-        </ToggleButton>
+        {isMobile && (
+          <ToggleButton onClick={toggleSidebar}>
+            {isOpen ? <IoClose /> : <IoMenu />}
+          </ToggleButton>
+        )}
+
+        {!isMobile && (
+          <CollapseButton onClick={toggleSidebar}>
+            {isOpen ? <CgMenuRight /> : <HiMenuAlt1 />}
+          </CollapseButton>
+        )}
 
         <Logo isOpen={isOpen}>
           <img src={imgLogo} alt="Logo" />
@@ -93,6 +120,20 @@ const SideBar = () => {
             </MenuItem>
           ))}
         </Menu>
+        <SocialIconsContainer isOpen={isOpen}>
+          {socialLinks.map((link, index) => (
+            <SocialIconLink
+              key={index}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={link.url.split('/')[2].replace('www.', '').split('.')[0]} // Avtomatik sarlavha
+            >
+              {link.icon}
+            </SocialIconLink>
+          ))}
+        </SocialIconsContainer>
+
       </SidebarContainer>
     </>
   );
